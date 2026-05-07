@@ -56,10 +56,10 @@ function nappi() {
 function strbox() {
     if (bounty >= morehp) {
         bounty -= morehp
-        bountymult = bountymult * 2
+        bountymult = bountymult * 2.3
         //more hp is the upgrade price, while boxhp marks the actual hp
         morehp = morehp * 2.2
-        boxhp = boxhp * 1.5
+        boxhp = boxhp * 1.9
         document.getElementById("strongerbox").textContent = Math.round(morehp * 10) / 10
         document.getElementById("currency").textContent = Math.round(bounty * 10) / 10
     }

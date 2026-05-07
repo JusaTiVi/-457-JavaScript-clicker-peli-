@@ -3,3 +3,13 @@ canvas {
     image-rendering: crisp-edges;
     border: 1px solid black;
 }
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shrink {
+    transform: scale(0.80);
+}

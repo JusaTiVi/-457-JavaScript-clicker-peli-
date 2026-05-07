@@ -7,12 +7,18 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <p>broken boxes: </p><p id="rikotut"></p>
+    <p>bounty value: </p><p id="currency"></p>
 
+    <shop>
+        <p>shop</p>
+        <p>stronger box: <button onclick="strbox()" id="strongerbox"></button></p>
+        <p>improved tools: <button onclick="bettertool()" id="strongertools"></button></p>
+        <p>autohammer: <button onclick="autohammer()" id="autohammer"></button></p>
+    </shop>
 
-    <p>shop</p>
-
-    <canvas id="GameCanvas" width="512" height="512" onclick="nappi()"></canvas>
+    <div class="center">
+        <canvas id="GameCanvas" width="512" height="512" onclick="nappi()"></canvas>
+    </div>
 </body>
 
 <script src="js/main.js"></script>

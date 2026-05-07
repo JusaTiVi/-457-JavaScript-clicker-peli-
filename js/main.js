@@ -57,6 +57,7 @@ function strbox() {
     if (bounty >= morehp) {
         bounty -= morehp
         bountymult = bountymult * 2
+        //more hp is the upgrade price, while boxhp marks the actual hp
         morehp = morehp * 2.2
         boxhp = boxhp * 1.5
         document.getElementById("strongerbox").textContent = Math.round(morehp * 10) / 10
@@ -67,8 +68,9 @@ function strbox() {
 function bettertool() {
     if (bounty >= tooldmg) {
         bounty -= tooldmg
-        breakspd = breakspd * 1.3
-        tooldmg = tooldmg * 1.81
+        //tooldmg marks the price of the upgrade, spd the actual damage dealt
+        breakspd = breakspd * 1.7
+        tooldmg = tooldmg * 1.86
         document.getElementById("strongertools").textContent = Math.round(tooldmg * 10) / 10
         document.getElementById("currency").textContent = Math.round(bounty * 10) / 10
     }

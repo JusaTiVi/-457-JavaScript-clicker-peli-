@@ -63,8 +63,8 @@ function strbox() {
         bounty -= morehp
         bountymult = bountymult * 2.3
         //more hp is the upgrade price, while boxhp marks the actual hp
-        morehp = morehp * 2.2
-        boxhp = boxhp * 1.9
+        morehp = morehp * 3.2
+        boxhp += 2.2
         updateUI();
     }
 }
@@ -73,8 +73,8 @@ function bettertool() {
     if (bounty >= tooldmg) {
         bounty -= tooldmg
         //tooldmg marks the price of the upgrade, spd the actual damage dealt
-        breakspd = breakspd * 1.7
-        tooldmg = tooldmg * 1.86
+        breakspd += 2
+        tooldmg = tooldmg * 3.5
         updateUI();
     }
 }
@@ -82,20 +82,27 @@ function bettertool() {
 function autohammer() {
     if (bounty >= hammercost) {
         bounty -= hammercost
-        hammercost = hammercost * 1.2
+        hammercost = hammercost * 5
         hammerdmg += 3
-        hammerdmg += hammerdmg * 1.07
-        hammerspd = hammerspd * 0.98
+        hammerdmg = hammerdmg * 1.05
+        hammerspd = hammerspd * 0.97
         updateUI();
         
     }
 }
 
 //causes the autohammer to hurt the box after a given delay
-if (hammerdmg > 0) {
+function hammer() {
     damage += hammerdmg
-    document.getElementById("currency").textContent = Math.round(bounty * 10) / 10
-    setTimeout(hammerspd)
+    if (damage >= boxhp) {
+        damage = 0
+        bounty += bountymult
+        updateUI();
+    }
     
 }
+
+setInterval(hammer, hammerspd)
+    
+
 

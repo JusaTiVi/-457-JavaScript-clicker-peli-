@@ -2,6 +2,7 @@ canvas {
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     border: 1px solid black;
+    transition: transform 0.1s ease;
 }
 
 .center {
@@ -11,5 +12,5 @@ canvas {
 }
 
 .shrink {
-    transform: scale(0.80);
+    transform: scale(0.8) rotate(10deg);
 }

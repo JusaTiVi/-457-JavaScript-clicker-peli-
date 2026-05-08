@@ -1,10 +1,10 @@
-//damage dealt to the current box + amount of damage dealt per click
-damage = 0
-breakspd = 1
 
-bounty = 0
-bountymult = 1
-boxhp = 3
+damage = 0 // current accumlated damage to the box
+breakspd = 1 // damage dealt per click
+
+bounty = 0 // player currency
+bountymult = 1 // amount of bounty granted per box
+boxhp = 3 //box health
 
 //shop item base prices
 morehp = 5
@@ -15,7 +15,7 @@ hammercost = 50
 document.getElementById("autohammer").textContent = hammercost
 
 //autohammer stats
-hammerspd = 0
+hammerspd = 1000
 hammerdmg = 0
 
 //pixel art correction
@@ -35,21 +35,26 @@ img.onload = () => {
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 }
 
+function updateUI() {
+    document.getElementById("currency").textContent = Math.round(bounty * 10) / 10
+    document.getElementById("strongerbox").textContent = Math.round(morehp * 10) / 10
+    document.getElementById("strongertools").textContent = Math.round(tooldmg * 10) / 10
+    document.getElementById("autohammer").textContent = Math.round(hammercost * 10) / 10
+}
+
 //starting bounty
 document.getElementById("currency").textContent = Math.round(bounty * 10) / 10
 
 function nappi() {
     canvas.classList.add("shrink");
-    setTimeout(() => {
-        canvas.classList.remove("shrink");
-    }, 140);
+    setTimeout(() => canvas.classList.remove("shrink"), 140);
 
     //calculates the amount of damage required and dealt + how much bounty is granted
     damage += breakspd
     if (damage >= boxhp) {
         damage = 0
         bounty += bountymult
-        document.getElementById("currency").textContent = Math.round(bounty * 10) / 10
+        updateUI();
     }
 }
 //makes the box stronger, in turn returning a greater bounty
@@ -60,8 +65,7 @@ function strbox() {
         //more hp is the upgrade price, while boxhp marks the actual hp
         morehp = morehp * 2.2
         boxhp = boxhp * 1.9
-        document.getElementById("strongerbox").textContent = Math.round(morehp * 10) / 10
-        document.getElementById("currency").textContent = Math.round(bounty * 10) / 10
+        updateUI();
     }
 }
 //makes the player's main tool stronger, breaking boxes in less hits
@@ -71,14 +75,27 @@ function bettertool() {
         //tooldmg marks the price of the upgrade, spd the actual damage dealt
         breakspd = breakspd * 1.7
         tooldmg = tooldmg * 1.86
-        document.getElementById("strongertools").textContent = Math.round(tooldmg * 10) / 10
-        document.getElementById("currency").textContent = Math.round(bounty * 10) / 10
+        updateUI();
     }
 }
-//automatically damages bose for you!
+//automatically damages the box for you!
 function autohammer() {
     if (bounty >= hammercost) {
         bounty -= hammercost
-
+        hammercost = hammercost * 1.2
+        hammerdmg += 3
+        hammerdmg += hammerdmg * 1.07
+        hammerspd = hammerspd * 0.98
+        updateUI();
+        
     }
 }
+
+//causes the autohammer to hurt the box after a given delay
+if (hammerdmg > 0) {
+    damage += hammerdmg
+    document.getElementById("currency").textContent = Math.round(bounty * 10) / 10
+    setTimeout(hammerspd)
+    
+}
+

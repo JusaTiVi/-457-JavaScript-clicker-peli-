@@ -6,6 +6,15 @@ bounty = 0 // player currency
 bountymult = 1 // amount of bounty granted per box
 boxhp = 3 //box health
 
+//visual health bar for the box
+const healthfill = document.getElementById("healthfill")
+function updateHP() {
+    let currenthp = boxhp - damage
+    let healthpercent = (currenthp / boxhp) * 100
+
+    healthfill.style.width = healthpercent + "%"
+}
+
 //shop item base prices
 morehp = 5
 document.getElementById("strongerbox").textContent = morehp
@@ -40,6 +49,7 @@ function updateUI() {
     document.getElementById("strongerbox").textContent = Math.round(morehp * 10) / 10
     document.getElementById("strongertools").textContent = Math.round(tooldmg * 10) / 10
     document.getElementById("autohammer").textContent = Math.round(hammercost * 10) / 10
+    updateHP()
 }
 
 //starting bounty
@@ -51,6 +61,7 @@ function nappi() {
 
     //calculates the amount of damage required and dealt + how much bounty is granted
     damage += breakspd
+    updateHP()
     if (damage >= boxhp) {
         damage = 0
         bounty += bountymult
@@ -94,6 +105,7 @@ function autohammer() {
 //causes the autohammer to hurt the box after a given delay
 function hammer() {
     damage += hammerdmg
+    updateHP()
     if (damage >= boxhp) {
         damage = 0
         bounty += bountymult

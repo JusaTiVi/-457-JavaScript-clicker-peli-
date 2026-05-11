@@ -14,3 +14,18 @@ canvas {
 .shrink {
     transform: scale(0.8) rotate(10deg);
 }
+
+.healthbar {
+    width: 300px;
+    height: 30px;
+
+    overflow: hidden;
+}
+
+#healthfill {
+    width: 100%;
+    height: 100%;
+
+    background: red;
+    transition: width 0.2s;
+}

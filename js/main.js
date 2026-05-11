@@ -28,8 +28,8 @@ ctx.webkitImageSmoothingEnabled = false;
 ctx.mozImageSmoothingEnabled = false;
 const img = new Image();
 
-//box models
-img.src = "woodenbox.png";
+//starting box model
+img.src = "assets/woodenbox.png";
 
 img.onload = () => {
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
@@ -61,10 +61,10 @@ function nappi() {
 function strbox() {
     if (bounty >= morehp) {
         bounty -= morehp
-        bountymult = bountymult * 2.3
+        bountymult = bountymult * 2.9
         //more hp is the upgrade price, while boxhp marks the actual hp
         morehp = morehp * 3.2
-        boxhp += 2.2
+        boxhp *= 2.1
         updateUI();
     }
 }
@@ -73,7 +73,7 @@ function bettertool() {
     if (bounty >= tooldmg) {
         bounty -= tooldmg
         //tooldmg marks the price of the upgrade, spd the actual damage dealt
-        breakspd += 2
+        breakspd *= 2
         tooldmg = tooldmg * 3.5
         updateUI();
     }

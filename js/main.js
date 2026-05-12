@@ -6,6 +6,9 @@ bounty = 0 // player currency
 bountymult = 1 // amount of bounty granted per box
 boxhp = 3 //box health
 
+//interval between autohammer's attacks
+let hammerinterval
+
 //visual health bar for the box
 const healthfill = document.getElementById("healthfill")
 function updateHP() {
@@ -99,7 +102,11 @@ function autohammer() {
         hammerspd = hammerspd * 0.97
         updateUI();
         
+        clearInterval(hammerinterval)
+
+        hammerinterval = setInterval(hammer, hammerspd)
     }
+    
 }
 
 //causes the autohammer to hurt the box after a given delay
@@ -114,7 +121,7 @@ function hammer() {
     
 }
 
-setInterval(hammer, hammerspd)
+
     
 
 

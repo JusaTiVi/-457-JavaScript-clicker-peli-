@@ -1,7 +1,7 @@
 canvas {
     image-rendering: pixelated;
     image-rendering: crisp-edges;
-    border: 1px solid black;
+
     transition: transform 0.1s ease;
 }
 
@@ -16,6 +16,7 @@ canvas {
 }
 
 .healthbar {
+
     width: 300px;
     height: 30px;
 
